@@ -10,6 +10,7 @@ export const ProductsProvider = ({ children }) => {
       const { data } = await axios.get(
         "https://front-test-api.herokuapp.com/api/product"
       );
+
       setProducts(data);
     })();
   }, []);
