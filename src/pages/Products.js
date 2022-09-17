@@ -1,4 +1,5 @@
 import Card from "components/Core/Card/Card";
+import Spinner from "components/Core/Spinner/Spinner";
 import useProducts from "hooks/useProducts";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const data = useProducts();
+  const { products: data, loading } = useProducts();
   useEffect(() => {
     setProducts(data);
   }, [data]);
@@ -23,6 +24,7 @@ const Products = () => {
   return (
     <section>
       <h1 className="text-4xl p-2 text-center">Products</h1>
+      {loading && <Spinner />}
       <div className="flex justify-end px-5 m-5 ">
         <input
           type="search"

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import useCart from "hooks/useCart";
+import Spinner from "components/Core/Spinner/Spinner";
 
 const Product = () => {
   const [product, setProduct] = useState({});
@@ -13,7 +14,7 @@ const Product = () => {
     colorCode: "",
     storageCode: ""
   });
-
+  const [loading, setLoading] = useState(false);
   const handleOptions = e => {
     const { name, value } = e.target;
 
@@ -25,8 +26,15 @@ const Product = () => {
   const { addToCart } = useCart();
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`/api/product/${id}`);
-      setProduct(data);
+      try {
+        setLoading(true);
+        const { data } = await axios.get(`/api/product/${id}`);
+        setProduct(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
   return (
@@ -37,7 +45,7 @@ const Product = () => {
       >
         &larr;
       </Link>
-
+      {loading && <Spinner />}
       <div className="w-full">
         <img
           src={product?.imgUrl}

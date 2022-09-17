@@ -6,17 +6,27 @@ const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState("");
   //fetch data in useEffect
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/product");
+      try {
+        setLoading(true);
+        const { data } = await axios.get("/api/product");
 
-      setProducts(data);
+        setProducts(data);
+      } catch (error) {
+        setErr(err);
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
   return (
-    <ProductsContext.Provider value={products}>
+    <ProductsContext.Provider value={{ loading, products, err }}>
       {children}
     </ProductsContext.Provider>
   );
