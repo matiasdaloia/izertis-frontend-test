@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-const Button = ({ bg, color, className, children }) => {
+const Button = ({ className, children, onClick }) => {
   return (
     <button
-      className={`btn border rounded px-5 grid place-items-center text-[${color}] bg-[${bg}] ${className}`}
+      onClick={onClick}
+      className={`btn border rounded px-5 grid place-items-center ${className}`}
     >
       {children}
     </button>
@@ -10,10 +11,9 @@ const Button = ({ bg, color, className, children }) => {
 };
 
 Button.propTypes = {
-  bg: PropTypes.string,
-  color: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired
 };
 
 export default Button;

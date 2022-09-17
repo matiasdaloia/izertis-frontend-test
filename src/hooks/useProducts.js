@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import axios from "lib/axios";
 import Proptypes from "prop-types";
 
 const ProductsContext = createContext();
@@ -9,9 +9,7 @@ export const ProductsProvider = ({ children }) => {
   //fetch data in useEffect
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(
-        "https://front-test-api.herokuapp.com/api/product"
-      );
+      const { data } = await axios.get("/api/product");
 
       setProducts(data);
     })();
