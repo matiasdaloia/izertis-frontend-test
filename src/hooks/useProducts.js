@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Proptypes from "prop-types";
+
 const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  //fetch data in useEffect
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(
@@ -27,7 +29,6 @@ ProductsProvider.propTypes = {
 };
 
 export const useProducts = () => {
-  console.log(useContext(ProductsContext));
   return useContext(ProductsContext);
 };
 

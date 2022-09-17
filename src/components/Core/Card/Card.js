@@ -1,7 +1,7 @@
 import Proptypes, { string } from "prop-types";
 const Card = ({ product }) => {
   return (
-    <div className="flex flex-col font-sans bg-[white]  border rounded-xl w-[100%] h-full">
+    <div className="flex flex-col font-sans bg-[white]  rounded-xl  h-full">
       <div className="flex justify-center relative pt-2">
         <img
           src={product.imgUrl}
