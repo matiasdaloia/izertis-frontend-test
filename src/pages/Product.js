@@ -103,12 +103,14 @@ const Product = () => {
             </div>
           </div>
         </div>
-        <Button
-          className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 w-full rounded"
-          onClick={() => addToCart({ id: product.id, ...options })}
-        >
-          Add to cart
-        </Button>
+        {options.colorCode && options.storageCode && (
+          <Button
+            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 w-full rounded"
+            onClick={() => addToCart({ id: product.id, ...options })}
+          >
+            Add to cart
+          </Button>
+        )}
       </div>
     </div>
   );
