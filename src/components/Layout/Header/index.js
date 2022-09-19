@@ -1,7 +1,7 @@
 import useCart from "hooks/useCart";
 
 const Header = () => {
-  const { itemsInCart } = useCart();
+  const { itemsInCart, cart } = useCart();
 
   return (
     <nav className="px-5 py-2 mt-3 fixed top-0 left-0 w-full flex justify-end items-center">
@@ -19,7 +19,7 @@ const Header = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <sup>{itemsInCart || 0}</sup>
+      <sup>{itemsInCart || cart.count || 0}</sup>
     </nav>
   );
 };
