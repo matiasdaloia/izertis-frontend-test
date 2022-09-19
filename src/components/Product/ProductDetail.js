@@ -1,9 +1,9 @@
+import { createContext, useContext, useMemo, useState } from "react";
 import Spinner from "components/Core/Spinner/Spinner";
 import { useSingleProduct } from "hooks/useSingleProduct";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const { createContext, useContext, useMemo, useState } = require("react");
 
 export const ProductDetailContext = createContext();
 

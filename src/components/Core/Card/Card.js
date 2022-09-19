@@ -6,7 +6,7 @@ const Card = ({ product }) => {
     <div className="flex flex-col font-sans bg-[white]  rounded-xl  h-full">
       <div className="flex justify-center relative pt-2">
         <img
-          src={product.imgUrl}
+          src={product?.imgUrl}
           alt=""
           className="rounded-xl"
           loading="lazy"
@@ -14,9 +14,9 @@ const Card = ({ product }) => {
       </div>
 
       <div className="p-2">
-        <h1 className="text-lg font-bold">{product.model}</h1>
-        <p className="text-lg font-semibold text-[#ffa500]">${product.price}</p>
-        <small>{product.brand}</small>
+        <h1 className="text-lg font-bold">{product?.model}</h1>
+        <p className="text-lg font-semibold text-[#ffa500]">${product?.price}</p>
+        <small>{product?.brand}</small>
       </div>
     </div>
   );

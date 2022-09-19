@@ -39,11 +39,11 @@ const Products = () => {
 
       <div className="flex justify-around px-20ß">
         <div className="container grid place-items-center grid-cols-2 auto-rows-[1fr] md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-10 px-5">
-          {products?.map(product => (
+          {products?.map(product =>
             <Link to={`/products/${product.id}`} key={product.id}>
               <Card product={product} />
             </Link>
-          ))}
+          )}
         </div>
       </div>
     </section>
