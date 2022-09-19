@@ -5,10 +5,8 @@ const cache = setupCache({
   maxAge: 60 * 60 * 1000
 });
 
-// Next we make an 'instance' of it
 const instance = axios.create({
   adapter: cache.adapter,
-  // .. where we make our configurations
   baseURL: "https://front-test-api.herokuapp.com"
 });
 

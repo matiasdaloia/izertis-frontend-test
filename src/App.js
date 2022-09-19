@@ -1,13 +1,17 @@
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import Layout from "components/Layout";
 import { CartProvider } from "hooks/useCart";
-import { ProductsProvider } from "hooks/useProducts";
 import Product from "pages/Product";
 import Products from "pages/Products";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <CartProvider>
-      <ProductsProvider>
+    <QueryClientProvider client={queryClient}>
+      <CartProvider>
         <BrowserRouter>
           <Layout>
             <Routes>
@@ -16,8 +20,8 @@ function App() {
             </Routes>
           </Layout>
         </BrowserRouter>
-      </ProductsProvider>
-    </CartProvider>
+      </CartProvider>
+    </QueryClientProvider>
   );
 }
 

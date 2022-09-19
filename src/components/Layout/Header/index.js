@@ -4,7 +4,7 @@ const Header = () => {
   const { itemsInCart, cart } = useCart();
 
   return (
-    <nav className="px-5 py-2 mt-3 fixed top-0 left-0 w-full flex justify-end items-center">
+    <nav className="z-10 px-5 py-2 mt-3 fixed top-0 left-0 w-full flex justify-end items-center">
       <svg
         width="30"
         height="30"

@@ -1,5 +1,7 @@
 import Proptypes, { string } from "prop-types";
+
 const Card = ({ product }) => {
+
   return (
     <div className="flex flex-col font-sans bg-[white]  rounded-xl  h-full">
       <div className="flex justify-center relative pt-2">

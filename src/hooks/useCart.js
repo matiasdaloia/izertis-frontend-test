@@ -1,22 +1,30 @@
 import { createContext, useContext } from "react";
 import axios from "lib/axios";
 import Proptypes from "prop-types";
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+
+const addToCart = async item => {
+  try {
+    const { data } = await axios.post('/api/cart', item);
+
+    localStorage.setItem("cartCount", data.count);
+    toast.success(`${data.count} items successfully added to cart!`);
+
+    return data;
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  //fetch data in useEffect
-  const [cart, setCart] = useState({});
+  const { data, isLoading, isError, mutate } = useMutation((item) => addToCart(item));
   const itemsInCart = localStorage.getItem("cartCount");
-  const addToCart = async item => {
-    const { data } = await axios.post("/api/cart", item);
-    setCart(data);
-    localStorage.setItem("cartCount", data.count);
-  };
 
   return (
-    <CartContext.Provider value={{ addToCart, itemsInCart, cart }}>
+    <CartContext.Provider value={{ addToCart: mutate, isLoading, isError, itemsInCart, cart: data }}>
       {children}
     </CartContext.Provider>
   );

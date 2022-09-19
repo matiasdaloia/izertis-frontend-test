@@ -1,43 +1,21 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import axios from "lib/axios";
-import Proptypes from "prop-types";
+import { useQuery } from "@tanstack/react-query";
+import axios from 'lib/axios';
 
-const ProductsContext = createContext();
-
-export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState("");
-  //fetch data in useEffect
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/api/product");
-
-        setProducts(data);
-      } catch (error) {
-        setErr(err);
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
-  return (
-    <ProductsContext.Provider value={{ loading, products, err }}>
-      {children}
-    </ProductsContext.Provider>
-  );
-};
-
-ProductsProvider.propTypes = {
-  children: Proptypes.node
+const fetchProducts = async () => {
+  try {
+    const { data } = await axios.get('/api/product');
+    return data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 export const useProducts = () => {
-  return useContext(ProductsContext);
-};
+  const { data, isFetching, isError } = useQuery(['getProducts'], fetchProducts);
 
-export default useProducts;
+  return {
+    data,
+    isFetching,
+    isError
+  };
+};
