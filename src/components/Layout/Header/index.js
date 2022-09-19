@@ -19,7 +19,7 @@ const Header = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <sup>{itemsInCart || cart.count || 0}</sup>
+      <sup>{itemsInCart || cart?.count || 0}</sup>
     </nav>
   );
 };
